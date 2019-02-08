@@ -147,7 +147,7 @@ TRAIN_LOCALIZER = False
 BUTTON_PRESS_NEW_TUB = False #should we make a new tub on each X button press?
 
 #in donkey gym env?
-DONKEY_GYM = True
+DONKEY_GYM = False
 DONKEY_SIM_PATH = "C:\Temp\donkey_rl\donkey_rl\sdsim\WindowsBuild\DonkeySim.exe" #"/home/tkramer/projects/sdsandbox/sdsim/build/DonkeySimLinux/donkey_sim.x86_64"
 DONKEY_GYM_ENV_NAME = "donkey-warehouse-v0"#""donkey-generated-track-v0" # "donkey-generated-track-v0" "donkey-generated-roads-v0" "donkey-warehouse-v0" "donkey-avc-sparkfun-v0"
 
