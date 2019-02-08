@@ -271,11 +271,17 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
 
     #IMU
     if cfg.HAVE_IMU:
-        from donkeycar.parts.imu import Bno055Imu
-        bno = Bno055Imu()
+        #from donkeycar.parts.imu import Bno055Imu
+        #bno = Bno055Imu()
+        #V.add(bno, outputs=['imu/acc_x', 'imu/acc_y', 'imu/acc_z',
+        #                    'imu/gyro_x','imu/gyro_y','imu/gyro_z', 'imu/temp'], threaded=True)
+
+        from donkeycar.parts.imu import SenseHatImu
+        bno = SenseHatImu()
         V.add(bno, outputs=['imu/acc_x', 'imu/acc_y', 'imu/acc_z',
-                            'imu/gyro_x','imu/gyro_y','imu/gyro_z', 'imu/temp'], threaded=True)
-        
+                            'imu/gyro_x', 'imu/gyro_y', 'imu/gyro_z',
+                            'imu/temp'], threaded=True)
+
         #imu = Mpu6050()
         #V.add(imu, outputs=['imu/acl_x', 'imu/acl_y', 'imu/acl_z',
         #    'imu/gyr_x', 'imu/gyr_y', 'imu/gyr_z'], threaded=True)

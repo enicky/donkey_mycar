@@ -77,7 +77,7 @@ USE_EARLY_STOP = True
 EARLY_STOP_PATIENCE = 50
 MIN_DELTA = .0005
 PRINT_MODEL_SUMMARY = True      #print layers and weights to stdout
-OPTIMIZER = None               #adam, sgd, rmsprop, etc.. None accepts default
+OPTIMIZER = "adam"               #adam, sgd, rmsprop, etc.. None accepts default
 LEARNING_RATE = 0.003           #only used when OPTIMIZER specified
 LEARNING_RATE_DECAY = 0.0       #only used when OPTIMIZER specified
 SEND_BEST_MODEL_TO_PI = False   #change to true to automatically send best model during training
@@ -101,7 +101,7 @@ JOYSTICK_DEADZONE = 0.0         # when non zero, this is the smallest throttle b
 SEQUENCE_LENGTH = 3
 
 #IMU
-HAVE_IMU = False
+HAVE_IMU = True
 
 #LED
 HAVE_RGB_LED = False
