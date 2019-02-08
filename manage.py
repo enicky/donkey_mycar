@@ -118,7 +118,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         else:
             raise(Exception("Unkown camera type: %s" % cfg.CAMERA_TYPE))
             
-        V.add(cam, inputs=inputs, outputs=['cam/image_array'], threaded=threaded)
+    #    V.add(cam, inputs=inputs, outputs=['cam/image_array'], threaded=threaded)
 
     if cfg.PUB_CAMERA_IMAGES:
         print("using pub camera images")
