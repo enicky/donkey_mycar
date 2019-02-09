@@ -124,12 +124,12 @@ REC_COUNT_ALERT_BLINK_RATE = 0.4 #how fast to blink the led in seconds on/off
 
 #first number is record count, second tuple is color ( r, g, b) (0-100)
 #when record count exceeds that number, the color will be used
-RECORD_ALERT_COLOR_ARR = [ (0, (1, 1, 1)),
-            (300, (5, 5, 5)),
-            (500, (5, 2, 0)),
-            (1000, (0, 5, 0)),
-            (1500, (0, 5, 5)),
-            (2000, (0, 0, 5)), ]
+RECORD_ALERT_COLOR_ARR = [ (0, (255, 0, 0)),
+            (300, (125, 125, 0)),
+            (600, (200, 100, 0)),
+            (900, (0, 255, 0)),
+            (1200, (0, 255, 255)),
+            (1500, (0, 0, 255)), ]
 
 
 #LED status color, 0-100, for model reloaded alert
