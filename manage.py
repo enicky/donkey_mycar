@@ -257,7 +257,9 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             record_tracker.dur_alert -= 1
 
         if record_tracker.dur_alert != 0:
-            return get_record_alert_color(num_records)
+            record_color_to_return = get_record_alert_color(num_records)
+            print("returning record color : ", record_color_to_return)
+            return record_color_to_return
 
         return 0   
 
