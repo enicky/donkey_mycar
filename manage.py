@@ -195,7 +195,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             led.set_rgb(0, 0, cfg.LED_R, cfg.LED_G, cfg.LED_B)
 
         if recording_alert:
-            led.set_rgb(*recording_alert)
+            led.set_rgb(0, 0, *recording_alert)
             return cfg.REC_COUNT_ALERT_BLINK_RATE
         else:
             led.set_rgb(0, 0, cfg.LED_R, cfg.LED_G, cfg.LED_B)
