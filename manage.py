@@ -107,8 +107,8 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             threaded = True
             inputs = ['angle', 'throttle']
         elif cfg.CAMERA_TYPE == "PICAM":
-            #from donkeycar.parts.camera import PiCamera
-            #cam = PiCamera(image_w=cfg.IMAGE_W, image_h=cfg.IMAGE_H, image_d=cfg.IMAGE_DEPTH)
+            from donkeycar.parts.camera import PiCamera
+            cam = PiCamera(image_w=cfg.IMAGE_W, image_h=cfg.IMAGE_H, image_d=cfg.IMAGE_DEPTH)
             print("finished cam ... ")
         elif cfg.CAMERA_TYPE == "WEBCAM":
             from donkeycar.parts.camera import Webcam
@@ -119,7 +119,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         else:
             raise(Exception("Unkown camera type: %s" % cfg.CAMERA_TYPE))
             
-    #    V.add(cam, inputs=inputs, outputs=['cam/image_array'], threaded=threaded)
+        V.add(cam, inputs=inputs, outputs=['cam/image_array'], threaded=threaded)
 
     if cfg.PUB_CAMERA_IMAGES:
         print("using pub camera images")
