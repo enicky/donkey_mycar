@@ -205,8 +205,6 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             led.set_rgb(0, 0, r, g, b)
             return -1 #solid on
 
-        print("mode : ", mode)
-
         if recording:
             return -1 #solid on
         elif mode == 'user':
