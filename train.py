@@ -44,17 +44,12 @@ from PIL import Image
 matplotlib can be a pain to setup. So handle the case where it is absent. When present,
 use it to generate a plot of training results.
 '''
-
-from keras.callbacks import TensorBoard
-from time import time
-
 try:
     import matplotlib.pyplot as plt
     do_plot = True
 except:
     do_plot = False
-
-print('using plot : ', do_plot)
+    
 deterministic = False
 
 if deterministic:
@@ -158,7 +153,6 @@ def collate_records(records, gen_records, opts):
             gyro_z = float(json_data['imu/gyro_z'])
 
             sample['imu_array'] = np.array([accl_x, accl_y, accl_z, gyro_x, gyro_y, gyro_z])
-
         except:
             pass
 
@@ -186,7 +180,6 @@ def save_json_and_weights(model, filename):
 
     arch = model.to_json()
     json_fnm = filename[:-2] + "json"
-    print('json filename : ', json_fnm)
     weights_fnm = filename[:-2] + "weights"
 
     with open(json_fnm, "w") as outfile:
@@ -243,7 +236,7 @@ def on_best_model(cfg, model, model_filename):
     if not cfg.SEND_BEST_MODEL_TO_PI:
         return
 
-    on_windows = False# = os.name == 'nt'
+    on_windows = os.name == 'nt'
 
     #If we wish, send the best model to the pi.
     #On mac or linux we have scp:
@@ -403,7 +396,6 @@ def train(cfg, tub_names, model_name, transfer_model, model_type, continuous, au
                     continue
 
                 _record = data[key]
-                #print("record : ", _record)
 
                 if _record['train'] != isTrainSet:
                     continue
@@ -529,13 +521,12 @@ def train(cfg, tub_names, model_name, transfer_model, model_type, continuous, au
 
     workers_count = 1
     use_multiprocessing = False
-    targetFolderName = "logs/{}-convs-{}-optimizer-{}-modeltype-{}".format(3, cfg.OPTIMIZER, int(time()), model_type)
-    tensorboard = TensorBoard(log_dir=targetFolderName)
-    callbacks_list = [tensorboard, save_best]
+
+    callbacks_list = [save_best]
 
     if cfg.USE_EARLY_STOP and not continuous:
         callbacks_list.append(early_stop)
-
+    
     history = kl.model.fit_generator(
                     train_gen, 
                     steps_per_epoch=steps_per_epoch, 
@@ -755,3 +746,4 @@ if __name__ == "__main__":
     aug = args['--aug']
     multi_train(cfg, tub, model, transfer, model_type, continuous, aug)
     
+>>>>>>> Stashed changes

@@ -205,6 +205,8 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             led.set_rgb(r, g, b)
             return -1 #solid on
 
+        print("mode : ", mode)
+
         if recording:
             return -1 #solid on
         elif mode == 'user':
@@ -216,13 +218,17 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         return 0
 
     if cfg.HAVE_RGB_LED and not cfg.DONKEY_GYM:
-        from donkeycar.parts.led_status import RGB_LED
-        led = RGB_LED(cfg.LED_PIN_R, cfg.LED_PIN_G, cfg.LED_PIN_B, cfg.LED_INVERT)
+        # from donkeycar.parts.led_status import RGB_LED
+        # led = RGB_LED(cfg.LED_PIN_R, cfg.LED_PIN_G, cfg.LED_PIN_B, cfg.LED_INVERT)
+
+        from donkeycar.parts.sensehatled import SenseHatLed
+        led = SenseHatLed()
+        print("setting rgb value : ", cfg.LED_R, cfg.LED_G, cfg.LED_B)
         led.set_rgb(cfg.LED_R, cfg.LED_G, cfg.LED_B)
         
         led_cond_part = Lambda(led_cond)
-        V.add(led_cond_part, inputs=['user/mode', 'recording', "records/alert", 'behavior/state', 'reloaded/model', "pilot/loc"],
-              outputs=['led/blink_rate'])
+        V.add(led_cond_part, inputs=['user/mode', 'recording', "records/alert", 'behavior/state', 'reloaded/model',
+                                     "pilot/loc"], outputs=['led/blink_rate'])
 
         V.add(led, inputs=['led/blink_rate'])
         

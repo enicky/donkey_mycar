@@ -115,7 +115,7 @@ LED_PIN_B = 16
 #LED status color, 0-100
 LED_R = 0
 LED_G = 0
-LED_B = 1
+LED_B = 255
 
 #LED Color for record count indicator
 REC_COUNT_ALERT = 1000  #how many records before blinking alert
@@ -152,4 +152,4 @@ DONKEY_SIM_PATH = "C:\Temp\donkey_rl\donkey_rl\sdsim\WindowsBuild\DonkeySim.exe"
 DONKEY_GYM_ENV_NAME = "donkey-warehouse-v0"#""donkey-generated-track-v0" # "donkey-generated-track-v0" "donkey-generated-roads-v0" "donkey-warehouse-v0" "donkey-avc-sparkfun-v0"
 
 #publish camera over network
-PUB_CAMERA_IMAGES = True
+PUB_CAMERA_IMAGES = False
