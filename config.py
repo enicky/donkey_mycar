@@ -104,7 +104,7 @@ SEQUENCE_LENGTH = 3
 HAVE_IMU = True
 
 #LED
-HAVE_RGB_LED = False
+HAVE_RGB_LED = True
 LED_INVERT = False              #COMMON ANNODE?
 
 #board pin number for pwm outputs

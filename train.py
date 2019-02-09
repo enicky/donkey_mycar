@@ -746,4 +746,3 @@ if __name__ == "__main__":
     aug = args['--aug']
     multi_train(cfg, tub, model, transfer, model_type, continuous, aug)
     
->>>>>>> Stashed changes
