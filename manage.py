@@ -171,7 +171,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         from donkeycar.parts.controller import  SenseHatJoystick
         j = SenseHatJoystick()
         V.add(j, inputs=['cam/image_array'],
-              outputs=['sense/joy/out'],
+              outputs=['user/mode'],
               threaded=True)
 
     #this throttle filter will allow one tap back for esc reverse
