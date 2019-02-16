@@ -34,7 +34,7 @@ MAX_LOOPS = 100000
 CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM)
 IMAGE_W = 160
 IMAGE_H = 120
-IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
+IMAGE_DEPTH = 1         # default RGB=3, make 1 for mono
 CAMERA_FRAMERATE = DRIVE_LOOP_HZ
 
 #9865, over rides only if needed, ie. TX2..
@@ -104,7 +104,7 @@ SEQUENCE_LENGTH = 3
 HAVE_IMU = True
 
 #LED
-HAVE_RGB_LED = False
+HAVE_RGB_LED = True
 LED_INVERT = False              #COMMON ANNODE?
 
 #board pin number for pwm outputs
@@ -115,21 +115,21 @@ LED_PIN_B = 16
 #LED status color, 0-100
 LED_R = 0
 LED_G = 0
-LED_B = 1
+LED_B = 255
 
 #LED Color for record count indicator
-REC_COUNT_ALERT = 1000  #how many records before blinking alert
+REC_COUNT_ALERT = 300  #how many records before blinking alert
 REC_COUNT_ALERT_CYC = 15 #how many cycles of 1/20 of a second to blink per REC_COUNT_ALERT records
 REC_COUNT_ALERT_BLINK_RATE = 0.4 #how fast to blink the led in seconds on/off
 
 #first number is record count, second tuple is color ( r, g, b) (0-100)
 #when record count exceeds that number, the color will be used
-RECORD_ALERT_COLOR_ARR = [ (0, (1, 1, 1)),
-            (3000, (5, 5, 5)),
-            (5000, (5, 2, 0)),
-            (10000, (0, 5, 0)),
-            (15000, (0, 5, 5)),
-            (20000, (0, 0, 5)), ]
+RECORD_ALERT_COLOR_ARR = [ (0, (255, 0, 0)),
+            (300, (125, 125, 0)),
+            (600, (200, 100, 0)),
+            (900, (0, 255, 0)),
+            (1200, (0, 255, 255)),
+            (1500, (0, 0, 255)), ]
 
 
 #LED status color, 0-100, for model reloaded alert
@@ -152,7 +152,4 @@ DONKEY_SIM_PATH = "C:\Temp\donkey_rl\donkey_rl\sdsim\WindowsBuild\DonkeySim.exe"
 DONKEY_GYM_ENV_NAME = "donkey-warehouse-v0"#""donkey-generated-track-v0" # "donkey-generated-track-v0" "donkey-generated-roads-v0" "donkey-warehouse-v0" "donkey-avc-sparkfun-v0"
 
 #publish camera over network
-PUB_CAMERA_IMAGES = True
-
-# use sensoehat joystick or not
-SENSE_JOYSTICK_USE = True
+PUB_CAMERA_IMAGES = False

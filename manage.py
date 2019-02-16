@@ -193,24 +193,24 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         #returns a blink rate. 0 for off. -1 for on. positive for rate.
         
         if track_loc is not None:
-            led.set_rgb(*cfg.LOC_COLORS[track_loc])
+            led.set_rgb(0, 0, *cfg.LOC_COLORS[track_loc])
             return -1
 
         if reloaded_model:
-            led.set_rgb(cfg.MODEL_RELOADED_LED_R, cfg.MODEL_RELOADED_LED_G, cfg.MODEL_RELOADED_LED_B)
+            led.set_rgb(0, 0, cfg.MODEL_RELOADED_LED_R, cfg.MODEL_RELOADED_LED_G, cfg.MODEL_RELOADED_LED_B)
             return 0.1
         else:
-            led.set_rgb(cfg.LED_R, cfg.LED_G, cfg.LED_B)
+            led.set_rgb(0, 0, cfg.LED_R, cfg.LED_G, cfg.LED_B)
 
         if recording_alert:
-            led.set_rgb(*recording_alert)
+            led.set_rgb(0, 0, *recording_alert)
             return cfg.REC_COUNT_ALERT_BLINK_RATE
         else:
-            led.set_rgb(cfg.LED_R, cfg.LED_G, cfg.LED_B)
+            led.set_rgb(0, 0, cfg.LED_R, cfg.LED_G, cfg.LED_B)
     
         if behavior_state is not None and model_type == 'behavior':
             r, g, b = cfg.BEHAVIOR_LED_COLORS[behavior_state]
-            led.set_rgb(r, g, b)
+            led.set_rgb(0, 0, r, g, b)
             return -1 #solid on
 
         if recording:
@@ -224,13 +224,17 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         return 0
 
     if cfg.HAVE_RGB_LED and not cfg.DONKEY_GYM:
-        from donkeycar.parts.led_status import RGB_LED
-        led = RGB_LED(cfg.LED_PIN_R, cfg.LED_PIN_G, cfg.LED_PIN_B, cfg.LED_INVERT)
-        led.set_rgb(cfg.LED_R, cfg.LED_G, cfg.LED_B)
+        # from donkeycar.parts.led_status import RGB_LED
+        # led = RGB_LED(cfg.LED_PIN_R, cfg.LED_PIN_G, cfg.LED_PIN_B, cfg.LED_INVERT)
+
+        from donkeycar.parts.sensehatled import SenseHatLed
+        led = SenseHatLed()
+        print("setting rgb value : ", cfg.LED_R, cfg.LED_G, cfg.LED_B)
+        led.set_rgb(0, 0, cfg.LED_R, cfg.LED_G, cfg.LED_B)
         
         led_cond_part = Lambda(led_cond)
-        V.add(led_cond_part, inputs=['user/mode', 'recording', "records/alert", 'behavior/state', 'reloaded/model', "pilot/loc"],
-              outputs=['led/blink_rate'])
+        V.add(led_cond_part, inputs=['user/mode', 'recording', "records/alert", 'behavior/state', 'reloaded/model',
+                                     "pilot/loc"], outputs=['led/blink_rate'])
 
         V.add(led, inputs=['led/blink_rate'])
         
@@ -261,7 +265,9 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
             record_tracker.dur_alert -= 1
 
         if record_tracker.dur_alert != 0:
-            return get_record_alert_color(num_records)
+            record_color_to_return = get_record_alert_color(num_records)
+            print("returning record color : ", record_color_to_return)
+            return record_color_to_return
 
         return 0   
 
