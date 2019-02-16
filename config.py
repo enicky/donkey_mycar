@@ -153,3 +153,6 @@ DONKEY_GYM_ENV_NAME = "donkey-warehouse-v0"#""donkey-generated-track-v0" # "donk
 
 #publish camera over network
 PUB_CAMERA_IMAGES = True
+
+# use sensoehat joystick or not
+SENSE_JOYSTICK_USE = True
