@@ -34,7 +34,7 @@ MAX_LOOPS = 100000
 CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM)
 IMAGE_W = 160
 IMAGE_H = 120
-IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
+IMAGE_DEPTH = 1         # default RGB=3, make 1 for mono
 CAMERA_FRAMERATE = DRIVE_LOOP_HZ
 
 #9865, over rides only if needed, ie. TX2..
