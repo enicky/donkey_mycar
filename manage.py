@@ -412,6 +412,13 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
           inputs=['user/mode', 'user/angle', 'user/throttle',
                   'pilot/angle', 'pilot/throttle'], 
           outputs=['angle', 'throttle'])
+
+    if cfg.USE_AZURE_IOTHUB:
+        from donkeycar.parts.azureiot import AzureIoT
+        iothub = AzureIoT()
+
+        V.add(iothub, inputs=['user/mode', 'angle', 'throttle'], run_condition='run_pilot')
+
     
     #Drive train setup
     if cfg.DONKEY_GYM:

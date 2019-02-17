@@ -156,3 +156,5 @@ PUB_CAMERA_IMAGES = False
 
 # use sensoehat joystick or not
 SENSE_JOYSTICK_USE = True
+
+USE_AZURE_IOTHUB = True
