@@ -152,7 +152,7 @@ DONKEY_SIM_PATH = "C:\Temp\donkey_rl\donkey_rl\sdsim\WindowsBuild\DonkeySim.exe"
 DONKEY_GYM_ENV_NAME = "donkey-warehouse-v0"#""donkey-generated-track-v0" # "donkey-generated-track-v0" "donkey-generated-roads-v0" "donkey-warehouse-v0" "donkey-avc-sparkfun-v0"
 
 #publish camera over network
-PUB_CAMERA_IMAGES = True
+PUB_CAMERA_IMAGES = False
 
 # use sensoehat joystick or not
 SENSE_JOYSTICK_USE = True

@@ -171,7 +171,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         from donkeycar.parts.controller import  SenseHatJoystick
         j = SenseHatJoystick()
         V.add(j, inputs=['cam/image_array'],
-              outputs=['user/mode', 'led/user_mode_status'],
+              outputs=['user/mode', 'led/current_mode_status', 'user/target_mode','led/target_mode_status'],
               threaded=True)
 
     #this throttle filter will allow one tap back for esc reverse
@@ -236,7 +236,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         V.add(led_cond_part, inputs=['user/mode', 'recording', "records/alert", 'behavior/state', 'reloaded/model',
                                      "pilot/loc"], outputs=['led/blink_rate'])
 
-        V.add(led, inputs=['led/blink_rate', 'led/user_mode_status'])
+        V.add(led, inputs=['led/blink_rate', 'led/current_mode_status', 'led/target_mode_status'])
         
 
     def get_record_alert_color(num_records):
